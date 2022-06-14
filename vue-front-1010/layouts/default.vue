@@ -1,11 +1,11 @@
 <template>
-  <div class="in-wrap">
+  <div class="in-wrap" >
     <!-- 公共头引入 -->
     <header id="header">
       <section class="container">
         <h1 id="logo">
-          <a href="#" title="谷粒学院">
-            <img src="~/assets/img/logo.png" width="100%" alt="谷粒学院">
+          <a href="#" title="柠檬鞋城">
+            <img src="https://lemon-lin.oss-cn-beijing.aliyuncs.com/2022/06/06/%25S6CNFO%7DT3N%5DBC%24F7JAIW2W.png"  width="100%" alt="柠檬鞋城">
           </a>
         </h1>
         <div class="h-r-nsl">
@@ -14,16 +14,10 @@
               <a>首页</a>
             </router-link>
             <router-link to="/course" tag="li" active-class="current">
-              <a>课程</a>
+              <a>商品</a>
             </router-link>
             <router-link to="/teacher" tag="li" active-class="current">
-              <a>名师</a>
-            </router-link>
-            <router-link to="/article" tag="li" active-class="current">
-              <a>文章</a>
-            </router-link>
-            <router-link to="/qa" tag="li" active-class="current">
-              <a>问答</a>
+              <a>厂家</a>
             </router-link>
           </ul>
           <!-- / nav -->
@@ -60,7 +54,7 @@
     </li>
     <!-- /未登录显示第1 li；登录后显示第2，3 li -->
 </ul>
-          <aside class="h-r-search">
+          <!-- <aside class="h-r-search">
             <form action="#" method="post">
               <label class="h-r-s-box">
                 <input type="text" placeholder="输入你想学的课程" name="queryCourse.courseName" value>
@@ -69,7 +63,7 @@
                 </button>
               </label>
             </form>
-          </aside>
+          </aside> -->
         </div>
         <aside class="mw-nav-btn">
           <div class="mw-nav-icon"></div>
@@ -183,13 +177,14 @@ export default {
         .then(response => {
           // console.log('################'+response.data.data.userInfo)
            this.loginInfo = response.data.data.userInfo
-           cookie.set('guli_ucenter',this.loginInfo,{domain: 'localhost'})
+           cookie.set('guli_ucenter',JSON.stringify(this.loginInfo),{domain: 'localhost'})
         })
     },
     //创建方法，从cookie获取用户信息
     showInfo() {
       //从cookie获取用户信息
       var userStr = cookie.get('guli_ucenter')
+      console.log(userStr);
       // 把字符串转换json对象(js对象)
       if(userStr) {
         this.loginInfo = JSON.parse(userStr)

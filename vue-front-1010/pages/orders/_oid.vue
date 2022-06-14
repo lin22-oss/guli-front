@@ -49,12 +49,12 @@
       <div class="Finish">
         <div class="fr" id="AgreeDiv">
           
-          <label for="Agree"><p class="on"><input type="checkbox" checked="checked">我已阅读并同意<a href="javascript:" target="_blank">《谷粒学院购买协议》</a></p></label>
+          <label for="Agree"><p class="on"><input type="checkbox" checked="checked">我已阅读并同意<a href="javascript:" target="_blank">《柠檬鞋城购买协议》</a></p></label>
         </div>
         <div class="clear"></div>
         <div class="Main fl">
           <div class="fl">
-            <a :href="'/course/'+order.courseId">返回课程详情页</a>
+            <a :href="'/course/'+order.courseId">返回商品详情页</a>
           </div>
           <div class="fr">
             <p>共 <strong class="red">1</strong> 件商品，合计<span class="red f20">￥<strong

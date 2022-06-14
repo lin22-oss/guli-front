@@ -13,7 +13,7 @@ export default {
     return request({
       url: '/eduorder/order/getOrderInfo/'+id,
       method: 'get'
-    })
+    }) 
   }, 
   //生成二维码的方法
   createNatvie(orderNo) {

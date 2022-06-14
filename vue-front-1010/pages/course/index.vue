@@ -4,19 +4,19 @@
     <section class="container">
       <header class="comm-title">
         <h2 class="fl tac">
-          <span class="c-333">全部课程</span>
+          <span class="c-333">全部商品</span>
         </h2>
       </header>
       <section class="c-sort-box">
         <section class="c-s-dl">
           <dl>
             <dt>
-              <span class="c-999 fsize14">课程类别</span>
+              <span class="c-999 fsize14">商品类别</span>
             </dt>
             <dd class="c-s-dl-li">
               <ul class="clearfix">
                 <li>
-                  <a title="全部" href="http://localhost:3000/course">全部</a>
+                  <a title="全部" @click="init()">全部</a>
                 </li>
                 <li v-for="(item,index) in subjectNestedList" :key="index" :class="{active:oneIndex==index}">
                   <a :title="item.title" href="#" @click="searchOne(item.id,index)">{{item.title}}</a>
@@ -79,23 +79,23 @@
               <li v-for="item in data.items" :key="item.id">
                 <div class="cc-l-wrap">
                   <section class="course-img">
-                    <img :src="item.cover" class="img-responsive" :alt="item.title">
+                    <img :src="item.cover" class="img-responsive" :alt="item.shoeName">
                     <div class="cc-mask">
-                      <a :href="'/course/'+item.id" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                      <a :href="'/course/'+item.id" title="立即购买" class="comm-btn c-btn-1">立即购买</a>
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
-                    <a :href="'/course/'+item.id" :title="item.title" class="course-title fsize18 c-333">{{item.title}}</a>
+                    <a :href="'/course/'+item.id" :title="item.shoeName" class="course-title fsize18 c-333">{{item.shoeName}}</a>
                   </h3>
                   <section class="mt10 hLh20 of">
-                    <span v-if="Number(item.price) === 0" class="fr jgTag bg-green">
+                    <!-- <span v-if="Number(item.price) === 0" class="fr jgTag bg-green">
                       <i class="c-fff fsize12 f-fA">免费</i>
                     </span>
                     <span class="fl jgAttr c-ccc f-fA">
                       <i class="c-999 f-fA">9634人学习</i>
                       |
                       <i class="c-999 f-fA">9634评论</i>
-                    </span>
+                    </span> -->
                   </section>
                 </div>
               </li>
@@ -183,6 +183,25 @@ export default {
         .then(response => {
           this.subjectNestedList = response.data.data.list
         })
+    },
+
+    init(){
+      this.page=1, //当前页
+      this.data={},  //课程列表
+      this.subjectNestedList= [], // 一级分类列表
+      this.subSubjectList= [], // 二级分类列表
+
+      this.searchObj= {}, // 查询表单对象
+
+      this.oneIndex=-1,
+      this.twoIndex=-1,
+      this.buyCountSort="",
+      this.gmtCreateSort="",
+      this.priceSort=""
+      //课程第一次查询
+      this.initCourseFirst()
+      //一级分类显示
+      this.initSubject()
     },
 
     //3 分页切换的方法

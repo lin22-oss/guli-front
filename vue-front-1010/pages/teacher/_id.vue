@@ -4,7 +4,7 @@
     <section class="container">
       <header class="comm-title">
         <h2 class="fl tac">
-          <span class="c-333">讲师介绍</span>
+          <span class="c-333">厂家介绍</span>
         </h2>
       </header>
       <div class="t-infor-wrap">
@@ -14,17 +14,8 @@
             <section class="t-infor-pic">
               <img :src="teacher.avatar">
             </section>
-            <h3 class="hLh30">
-              <span class="fsize24 c-333">{{teacher.name}}&nbsp;
-                {{ teacher.level===1?'高级讲师':'首席讲师' }}
-              </span>
-            </h3>
             <section class="mt10">
               <span class="t-tag-bg">{{teacher.intro}}</span>
-            </section>
-            <section class="t-infor-txt">
-              <p
-                class="mt20">{{teacher.career}}</p>
             </section>
             <div class="clear"></div>
           </div>
@@ -35,7 +26,7 @@
         <div>
           <header class="comm-title all-teacher-title c-course-content">
             <h2 class="fl tac">
-              <span class="c-333">主讲课程</span>
+              <span class="c-333">旗下商品</span>
             </h2>
             <section class="c-tab-title">
               <a href="javascript: void(0)">&nbsp;</a>
@@ -54,11 +45,11 @@
                   <section class="course-img">
                     <img :src="course.cover" class="img-responsive" >
                     <div class="cc-mask">
-                      <a href="#" title="开始学习" target="_blank" class="comm-btn c-btn-1">开始学习</a>
+                      <a href="#" title="点击购买" target="_blank" class="comm-btn c-btn-1">点击购买</a>
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
-                    <a href="#" :title="course.title" target="_blank" class="course-title fsize18 c-333">{{course.title}}</a>
+                    <a href="#" :title="course.title" target="_blank" class="course-title fsize18 c-333">{{course.shoeName}}</a>
                   </h3>
                 </div>
               </li>

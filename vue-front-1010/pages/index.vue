@@ -5,9 +5,14 @@
   <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
 
-          <div v-for="banner in bannerList" :key="banner.id" class="swiper-slide" style="background: #040B1B;">
-              <a target="_blank" :href="banner.linkUrl">
-                  <img :src="banner.imageUrl" :alt="banner.title">
+          <div class="swiper-slide" style="background: #040B1B;">
+              <a target="_blank">
+                  <img :src=" 'https://lemon-lin.oss-cn-beijing.aliyuncs.com/2022/06/06/H6M%60XE%7EXPG8V91%7D5B4%28SY%5BW.png'">
+              </a>
+          </div>
+          <div class="swiper-slide" style="background: #040B1B;">
+              <a target="_blank">
+                  <img :src=" 'https://lemon-lin.oss-cn-beijing.aliyuncs.com/2022/06/06/BYE%25%5DT%299KT%60NIN%29UCJI8BBR.png'">
               </a>
           </div>
       </div>
@@ -20,10 +25,10 @@
      <div id="aCoursesList">
       <!-- 网校课程 开始 -->
       <div>
-        <section class="container">
+        <section class="container"> 
           <header class="comm-title">
             <h2 class="tac">
-              <span class="c-333">热门课程</span>
+              <span class="c-333">热门商品</span>
             </h2>
           </header>
           <div>
@@ -35,23 +40,18 @@
                       <img
                         :src="course.cover"
                         class="img-responsive"
-                        :alt="course.title"
+                        :alt="course.shoeName"
                       >
                       <div class="cc-mask">
-                        <a href="#" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
+                        <a href="#" title="立即购买" class="comm-btn c-btn-1">立即购买</a>
                       </div>
                     </section>
                     <h3 class="hLh30 txtOf mt10">
-                      <a href="#" :title="course.title" class="course-title fsize18 c-333">{{course.title}}</a>
+                      <a href="#" :title="course.shoeName" class="course-title fsize18 c-333">{{course.shoeName}}</a>
                     </h3>
                     <section class="mt10 hLh20 of">
-                      <span class="fr jgTag bg-green" v-if="Number(course.price) === 0">
-                        <i class="c-fff fsize12 f-fA">免费</i>
-                      </span>
-                      <span class="fl jgAttr c-ccc f-fA">
-                        <i class="c-999 f-fA">9634人学习</i>
-                        |
-                        <i class="c-999 f-fA">9634评论</i>
+                      <span class="fr jgTag bg-green">
+                        <i class="c-fff fsize12 f-fA">价格：￥{{course.price}}</i>
                       </span>
                     </section>
                   </div>
@@ -61,7 +61,7 @@
               <div class="clear"></div>
             </article>
             <section class="tac pt20">
-              <a href="#" title="全部课程" class="comm-btn c-btn-2">全部课程</a>
+              <a href="#" title="全部商品" class="comm-btn c-btn-2">全部商品</a>
             </section>
           </div>
         </section>
@@ -72,7 +72,7 @@
         <section class="container">
           <header class="comm-title">
             <h2 class="tac">
-              <span class="c-333">名师大咖</span>
+              <span class="c-333">合作厂家</span>
             </h2>
           </header>
           <div>
@@ -88,9 +88,6 @@
                     <div class="mt10 hLh30 txtOf tac">
                       <a href="/teacher/1" :title="teacher.name" class="fsize18 c-666">{{teacher.name}}</a>
                     </div>
-                    <div class="hLh30 txtOf tac">
-                      <span class="fsize14 c-999">{{teacher.career}}</span>
-                    </div>
                     <div class="mt15 i-q-txt">
                       <p
                         class="c-999 f-fA"
@@ -103,7 +100,7 @@
               <div class="clear"></div>
             </article>
             <section class="tac pt20">
-              <a href="#" title="全部讲师" class="comm-btn c-btn-2">全部讲师</a>
+              <a href="#" title="全部厂家" class="comm-btn c-btn-2">全部厂家</a>
             </section>
           </div>
         </section>
@@ -114,7 +111,6 @@
 </template>
 
 <script>
-import banner from '@/api/banner'
 import index from '@/api/index'
 
 export default {
@@ -132,15 +128,11 @@ export default {
           prevEl: '.swiper-button-prev'//前一页dom节点
         }
       },
-      //banner数组
-      bannerList:[],
       eduList:[],
       teacherList:[]
     }
   },
   created() {
-    //调用查询banner的方法
-    this.getBannerList()
     //调用查询热门课程和名师的方法
     this.getHotCourseTeacher()
   },
@@ -151,13 +143,6 @@ export default {
         .then(response => {
           this.eduList = response.data.data.eduList
           this.teacherList = response.data.data.teacherList
-        })
-    },
-    //查询banner数据
-    getBannerList() {
-      banner.getListBanner()
-        .then(response => {
-          this.bannerList = response.data.data.list
         })
     }
   }
